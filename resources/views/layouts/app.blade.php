@@ -60,7 +60,7 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('admin.user.show', $user 'user') }}">
+                                    <a class="dropdown-item" href="{{ route('classroom.index') }}">
                                         Listar Aulas
                                     </a>
                                     
@@ -68,7 +68,7 @@
                                     <a class="dropdown-item" href="{{ route('admin.user.index') }}">
                                         Listar Usuários
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('admin.user.index') }}">
+                                    <a class="dropdown-item" href="{{ route('classroom.create') }}">
                                         Cadastrar Aula
                                     </a>
                                     @endcan

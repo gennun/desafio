@@ -20,5 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:edit-users')->group(function(){
-    Route::resource('/user', 'UserController');
+    Route::resource('/user', 'UserController', ['except' => ['show', 'create', 'store']]);
 });
+
+Route::resource('/admin/classroom', 'Admin\ClassroomController');
