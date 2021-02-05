@@ -78,7 +78,7 @@ class UserController extends Controller
             $request->session()->flash('success', 'Usuário atualizado!');
         }
         else{
-            $request->session()->flash('error', 'Houve um erro na atualiz!');
+            $request->session()->flash('error', 'Houve um erro na atualização!');
         }
         return redirect()->route('admin.user.index');
     }

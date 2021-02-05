@@ -68,7 +68,7 @@
                                     <a class="dropdown-item" href="{{ route('admin.user.index') }}">
                                         Listar Usuários
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('classroom.create') }}">
+                                    <a class="dropdown-item" href="{{ route('admin.classroom.create') }}">
                                         Cadastrar Aula
                                     </a>
                                     @endcan

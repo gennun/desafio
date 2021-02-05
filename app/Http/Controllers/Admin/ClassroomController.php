@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Classroom;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
@@ -15,7 +16,8 @@ class ClassroomController extends Controller
      */
     public function index()
     {
-        return 'Classroom Index';
+        $videos = Classroom::all();
+        return view('admin.user.classroom', compact('videos'));
     }
 
     /**
@@ -25,7 +27,7 @@ class ClassroomController extends Controller
      */
     public function create()
     {
-        return 'Create Classroom Area';
+        return view('admin.user.create');
     }
 
     /**
@@ -34,9 +36,18 @@ class ClassroomController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Classroom $class)
     {
-        //
+        Classroom::create([
+            'nome' => $request->nome,
+            'description' => $request->description,
+            'url' => substr_replace($request->url, "embed/", 24, 8),
+            
+        ]);
+
+        $request->session()->flash('success', 'Cadastrado com sucesso!');
+
+        return view('admin.user.create');
     }
 
     /**
@@ -58,7 +69,7 @@ class ClassroomController extends Controller
      */
     public function edit(User $user)
     {
-        //
+       return 'Oi';
     }
 
     /**
@@ -81,6 +92,6 @@ class ClassroomController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        return 'Tchau';
     }
 }
