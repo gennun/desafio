@@ -10,7 +10,7 @@
     <h1>Desafio Scaffold</h1>
     <p>Como testar?</p>
 
-<ul>
+<ol>
     <li>
         <code>git clone https://github.com/gennun/desafio.git</code> 
     </li>
@@ -18,13 +18,13 @@
         <code>composer install</code> 
     </li>
     <li>
-       renomear ".env.example" para ".env"
+       Renomear ".env.example" para ".env"
     </li>
     <li>    
-        Modificar DB_DATABASE=laravel para DB_DATABASE=desafio_scaffold dentro do arquivo .env
+        Modificar "DB_DATABASE=laravel" para "DB_DATABASE=desafio_scaffold" dentro do arquivo .env
     </li>
     <li>
-        Criar um DB chamado desafio_scaffold
+        Criar um DB chamado "desafio_scaffold"
     </li>
     <li>
         <code>php artisan migrate</code> 
@@ -32,6 +32,6 @@
     <li>
         <code>php artisan db:seed</code> 
     </li>
-</ul>
+</ol>
 </body>
 </html>
