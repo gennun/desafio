@@ -6,41 +6,36 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Lista de aulas</div>
-                <table class="table table-striped">
-                    <thead>
-                      <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Título</th>
-                        <th scope="col">Descrição</th>
-                        <th scope="col">Ações</th>
-                      </tr>
-                    </thead>
-                    <tbody>
+                    <div class="container">
+                    
+                    <div>
                         @foreach($videos as $video)
-                            <tr>
-                                <th scope="row">{{$video->id}}</th>
-                                <td>{{ $video->name }}</td>
-                                <td>{{ $video->description }}</td>
-                                <td><iframe width="560" height="315" src="{{ $video->url }}" frameborder="0"></iframe></td>
-                                <td>
-                                    @can('edit-users')
-                                        <a href="{{ route('admin.classroom.edit', $video) }}">
-                                            <button type="button" class="btn btn-primary float-left">Editar</button>
-                                        </a>
-                                        <form action="{{ route('admin.classroom.destroy', $video) }}" method="POST" class="float-left">
-                                            @csrf
-                                            {{ method_field('DELETE') }}
-                                            <button type="submit" class="btn btn-danger">Deletar</button>
-                                        </form>
-                                    @endcan
-                                    
-                                </td>
-                            </tr>
+                            <div class="container">
+                                    <ul style="list-style: none;" class="list-group"> 
+                                        <li class="list-group-item">Aula: {{$video->id}}</th>
+                                        <li class="list-group-item">Título: {{ $video->nome }}</li>
+                                        <li class="list-group-item">Descrição: {{ $video->description }}</li>
+                                        <li class="list-group-item"><iframe width="560" height="315" src="{{ $video->url }}" frameborder="0"></iframe></li>
+                                        <li class="list-group-item">
+                                            @can('edit-users')
+                                                <a href="{{ route('admin.classroom.edit', $video) }}">
+                                                    <button type="button" class="btn btn-primary float-left">Editar</button>
+                                                </a>
+                                                <form action="{{ route('admin.classroom.destroy', $video) }}" method="POST" class="float-left">
+                                                    @csrf
+                                                    {{ method_field('DELETE') }}
+                                                    <button type="submit" class="btn btn-danger">Deletar</button>
+                                                </form>
+                                            @endcan
+                                        </li> 
+                                    </ul>
+                            </div><div><br/></div>
+
                         @endforeach
                       
                       
-                    </tbody>
-                  </table>
+                    </div>
+                </div>
                 
                     
                 </div>

@@ -4,11 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use App\Classroom;
 use App\Http\Controllers\Controller;
+use App\Role;
 use App\User;
 use Illuminate\Http\Request;
+use Gate;
+use Illuminate\Auth\Access\Gate as AccessGate;
 
 class ClassroomController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
@@ -38,60 +42,71 @@ class ClassroomController extends Controller
      */
     public function store(Request $request, Classroom $class)
     {
+        $shortUrlRegex = '/youtu.be\/([a-zA-Z0-9_-]+)\??/i';
+        $longUrlRegex = '/youtube.com\/((?:embed)|(?:watch))((?:\?v\=)|(?:\/))([a-zA-Z0-9_-]+)/i';
+
+        if (preg_match($longUrlRegex, $request->url, $matches)) {
+            $youtube_id = $matches[count($matches) - 1];
+        }
+
+        if (preg_match($shortUrlRegex, $request->url, $matches)) {
+            $youtube_id = $matches[count($matches) - 1];
+        }
+        $youtubeUrl = 'https://www.youtube.com/embed/' . $youtube_id ;
+
         Classroom::create([
             'nome' => $request->nome,
             'description' => $request->description,
-            'url' => substr_replace($request->url, "embed/", 24, 8),
-            
+            'url' => $youtubeUrl,
+
         ]);
+
 
         $request->session()->flash('success', 'Cadastrado com sucesso!');
 
         return view('admin.user.create');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
+    
+
+    public function edit(Classroom $classroom)
     {
-        //
+
+        return view('admin.user.editclass', compact('classroom'));
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(User $user)
+    public function update(Request $request, Classroom $classroom)
     {
-       return 'Oi';
+        $shortUrlRegex = '/youtu.be\/([a-zA-Z0-9_-]+)\??/i';
+        $longUrlRegex = '/youtube.com\/((?:embed)|(?:watch))((?:\?v\=)|(?:\/))([a-zA-Z0-9_-]+)/i';
+
+        if (preg_match($longUrlRegex, $request->url, $matches)) {
+            $youtube_id = $matches[count($matches) - 1];
+        }
+
+        if (preg_match($shortUrlRegex, $request->url, $matches)) {
+            $youtube_id = $matches[count($matches) - 1];
+        }
+        $youtubeUrl = 'https://www.youtube.com/embed/' . $youtube_id ;
+
+        $classroom->nome = $request->nome;
+        $classroom->description = $request->description;
+        $classroom->url = $youtubeUrl;
+        
+        if($classroom->save()){
+            $request->session()->flash('success', 'Atualizado com sucesso!');
+        }
+        else{
+            $request->session()->flash('error', 'Houve um erro na atualização!');
+        }
+        return redirect()->route('classroom.index');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, User $user)
+    public function destroy(Classroom $classroom)
     {
-        //
-    }
+        $classroom->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user)
-    {
-        return 'Tchau';
+        return redirect()->route('classroom.index');
     }
 }
