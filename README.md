@@ -12,10 +12,10 @@
 
 <ul>
     <li>
-        <code>git clone https://github.com/gennun/desafio.git</code> == $0
+        <code>git clone https://github.com/gennun/desafio.git</code> 
     </li>
     <li>
-        <code>composer install</code> == $0
+        <code>composer install</code> 
     </li>
     <li>
        renomear ".env.example" para ".env"
@@ -27,10 +27,10 @@
         Criar um DB chamado desafio_scaffold
     </li>
     <li>
-        <code>php artisan migrate</code> == $0
+        <code>php artisan migrate</code> 
     </li>
     <li>
-        <code>php artisan db:seed</code> == $0
+        <code>php artisan db:seed</code> 
     </li>
 </ul>
 </body>
