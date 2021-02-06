@@ -14,7 +14,8 @@
                         <label for="" class="col-md-4 col-form-label text-md-right">Título</label>
 
                         <div class="col-md-6">
-                            <input type="text" class="form-control" name="nome" value="{{ $classroom->nome }}">
+                            <input id="nome" type="text" class="form-control @error('nome') is-invalid @enderror"  name="nome" value="{{ $classroom->nome }}" required autocomplete="nome" autofocus>
+ 
                         </div>
                     </div>
 
@@ -22,14 +23,14 @@
                         <label for="" class="col-md-4 col-form-label text-md-right" >Descrição</label>
 
                         <div class="col-md-6">
-                            <input type="text" class="form-control" name="description" value="{{ $classroom->description }}">
+                            <input id="description" type="text" class="form-control @error('description') is-invalid @enderror"  name="description" value="{{ $classroom->description }}" required autocomplete="description" autofocus>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="" class="col-md-4 col-form-label text-md-right">(url youtube)</label>
 
                         <div class="col-md-6">
-                            <input type="text" class="form-control" name="url" value="{{ $classroom->url }}">
+                            <input id="url" type="text" class="form-control @error('url') is-invalid @enderror"  name="url" value="{{ $classroom->url }}" required autocomplete="url" autofocus>
                         </div>
                     </div>
 

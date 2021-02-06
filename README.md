@@ -32,6 +32,12 @@
     <li>
         <code>php artisan db:seed</code> 
     </li>
+    <li>
+        Admin - admin@admin.com / Senha - admin 
+    </li>
+    <li>
+        User - user@user.com / Senha - user 
+    </li>
 </ol>
 </body>
 </html>

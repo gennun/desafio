@@ -23,13 +23,22 @@ class UsersTableSeeder extends Seeder
         $admin = User::create([
             'name' => 'Administrador',
             'email' => 'admin@admin.com',
-            'password' => bcrypt('password')
+            'password' => bcrypt('admin')
+        ]);
+        
+        $user1 = User::create([
+            'name' => 'Usuário',
+            'email' => 'user@user.com',
+            'password' => bcrypt('user')
         ]);
         
         
         $users = factory(User::class, 15)->create();
 
+        $user1->roles()->attach($userRole);
+
         $admin->roles()->attach($adminRole);
+        
         foreach ($users as $user)
         {
             $user->roles()->attach($userRole);
